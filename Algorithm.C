@@ -30,7 +30,16 @@ void addConnection() {
     cost[b][a] = w;   /* undirected graph */
 }
 
+void showMatrix() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++)
+            printf("%4d", cost[i][j]);
+        printf("   %s\n", names[i]);
+    }
+}
+
 /* Prim's algorithm from vertex 'start'. Returns total cost. */
+
 int prim(int start, int show) {
     int key[MAX], parent[MAX], visited[MAX];
     int total = 0, count = 0;
@@ -89,4 +98,24 @@ void runPrim() {
     printf("Start from building number: ");
     scanf("%d", &s);
     prim(s - 1, 1);
+}
+
+void compareStarts() {
+    for (int i = 0; i < n; i++)
+        printf("Start %s -> total cost %d\n", names[i], prim(i, 0));
+}
+
+void loadSample() {
+    n = 5;
+    char *s[] = {"Library", "Admin", "CSDept", "Hostel", "Canteen"};
+    for (int i = 0; i < n; i++) {
+        for (int c = 0; ; c++) { names[i][c] = s[i][c]; if (!s[i][c]) break; }
+        for (int j = 0; j < n; j++) cost[i][j] = 0;
+    }
+    int e[][3] = {{0,1,4},{0,2,3},{1,2,1},{1,3,2},{2,3,4},{3,4,2}};
+    for (int i = 0; i < 6; i++) {
+        cost[e[i][0]][e[i][1]] = e[i][2];
+        cost[e[i][1]][e[i][0]] = e[i][2];
+    }
+    printf("Sample loaded.\n");
 }
