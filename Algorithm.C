@@ -119,3 +119,31 @@ void loadSample() {
     }
     printf("Sample loaded.\n");
 }
+
+int main() {
+    int ch;
+    do {
+        printf("\n--- Campus Network Planner ---\n");
+        printf("1. Enter buildings\n");
+        printf("2. Add connection\n");
+        printf("3. Show cost matrix\n");
+        printf("4. Run Prim's algorithm\n");
+        printf("5. Compare different starting buildings\n");
+        printf("6. Load sample data\n");
+        printf("0. Exit\n");
+        printf("Choice: ");
+        scanf("%d", &ch);
+
+        switch (ch) {
+            case 1: addBuildings(); break;
+            case 2: addConnection(); break;
+            case 3: showMatrix(); break;
+            case 4: runPrim(); break;
+            case 5: compareStarts(); break;
+            case 6: loadSample(); break;
+            case 0: printf("Bye!\n"); break;
+            default: printf("Invalid choice\n");
+        }
+    } while (ch != 0);
+    return 0;
+}
